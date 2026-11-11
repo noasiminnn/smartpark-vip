@@ -1,0 +1,29 @@
+
+name: SmartPark CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose
+        run: docker compose config --quiet
+
+      - name: Start containers
+        run: docker compose up -d
+
+      - name: Check containers
+        run: docker compose ps
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down
