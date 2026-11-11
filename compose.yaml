@@ -1,0 +1,17 @@
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    depends_on:
+      - storage
+
+  storage:
+    image: httpd:2.4
+    ports:
+      - "8081:80"
+    volumes:
+      - ./storage/images:/usr/local/apache2/htdocs:ro

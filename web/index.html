@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPark VIP | Luxury Parking</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        /* כותרת ראשית */
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .logo h1 {
+            font-size: 38px;
+            margin: 0;
+        }
+
+        .logo span {
+            color: #43e0bc;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .online {
+            background: #123c34;
+            color: #55e6ba;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* כרטיסי נתונים */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: #172337;
+            border: 1px solid #2a3a50;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .stat p {
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .stat h2 {
+            font-size: 32px;
+            color: #43e0bc;
+            margin: 12px 0 0;
+        }
+
+        /* אזורים ראשיים */
+
+        .panel {
+            background: #172337;
+            border: 1px solid #2a3a50;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* כרטיסי רכבים */
+
+        .cars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .car {
+            background: #101b2c;
+            border: 1px solid #304057;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .car:hover {
+            transform: translateY(-6px);
+            border-color: #43e0bc;
+        }
+
+        .car img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+            background: #263448;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            margin: 0 0 15px;
+            font-size: 21px;
+        }
+
+        .car-info p {
+            color: #a6b5c9;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .price {
+            color: #43e0bc;
+            font-size: 23px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .vip {
+            display: inline-block;
+            background: #45351b;
+            color: #ffd36d;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* טבלת רכבים */
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 17px;
+            text-align: right;
+            border-bottom: 1px solid #304057;
+        }
+
+        th {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background: #1d2c43;
+        }
+
+        .value-cell {
+            color: #43e0bc;
+            font-weight: bold;
+        }
+
+        /* הודעה בתחתית */
+
+        .notice {
+            background: #102b32;
+            border: 1px solid #24515a;
+            border-radius: 14px;
+            padding: 18px;
+            color: #a9e5de;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            color: #718096;
+            padding: 15px;
+            font-size: 13px;
+        }
+
+        /* התאמה לטלפונים */
+
+        @media (max-width: 800px) {
+            .stats,
+            .cars {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo h1 {
+                font-size: 30px;
+            }
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .panel {
+                padding: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- כותרת -->
+
+        <header>
+            <div class="logo">
+                <h1>🚗 SmartPark <span>VIP</span></h1>
+                <p class="subtitle">
+                    מערכת לניהול רכבי יוקרה וחניון חכם
+                </p>
+            </div>
+
+            <div class="online">
+                ● מערכת פעילה
+            </div>
+        </header>
+
+        <!-- נתונים כלליים -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <p>🚘 רכבים שזוהו</p>
+                <h2 id="totalCars">0</h2>
+            </div>
+
+            <div class="stat">
+                <p>⭐ רכבי VIP</p>
+                <h2 id="vipCars">0</h2>
+            </div>
+
+            <div class="stat">
+                <p>💰 שווי כולל משוער</p>
+                <h2 id="totalValue">₪0</h2>
+            </div>
+
+        </section>
+
+        <!-- תמונות רכבים -->
+
+        <section class="panel">
+            <h2>📸 רכבים שזוהו בכניסה לחניון</h2>
+
+            <div class="cars" id="carCards"></div>
+        </section>
+
+        <!-- טבלת רכבים -->
+
+        <section class="panel">
+
+            <h2>📊 טבלת רכבים ושווי</h2>
+
+            <div class="table-wrap">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>מספר</th>
+                            <th>יצרן ודגם</th>
+                            <th>סוג רכב</th>
+                            <th>שווי משוער</th>
+                            <th>סטטוס</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="carsTable"></tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+        <!-- הודעת מערכת -->
+
+        <div class="notice">
+            🛡️ SmartPark VIP - מערכת הדגמה לניהול
+            וזיהוי רכבים בחניון.
+            נתוני הרכבים והשווי מוגדרים מראש.
+        </div>
+
+        <footer>
+            SmartPark VIP © 2026
+            <p>DevOps Project | Nginx + Apache + Docker</p>
+        </footer>
+
+    </div>
+
+    <script>
+
+        // מאגר הרכבים של החניון
+        // סדר הרכבים: ימין, אמצע, שמאל
+
+        const cars = [
+
+            {
+                model: "BMW X6 M Competition",
+                type: "SUV ספורט יוקרתי",
+                value: 1100000,
+                vip: true,
+                image: "http://localhost:8081/car1.jpg"
+            },
+
+            {
+                model: "BMW M4 Competition",
+                type: "קופה ספורטיבית",
+                value: 850000,
+                vip: true,
+                image: "http://localhost:8081/car2.jpg"
+            },
+
+            {
+                model: "Cadillac Escalade IQ",
+                type: "SUV חשמלי יוקרתי",
+                value: 900000,
+                vip: true,
+                image: "http://localhost:8081/car3.jpg"
+            }
+
+        ];
+
+        // עיצוב מספר בתור מחיר בשקלים
+
+        function formatMoney(number) {
+            return "₪" + number.toLocaleString("he-IL");
+        }
+
+        // בחירת אזורים מתוך ה-HTML
+
+        const cards = document.getElementById("carCards");
+        const table = document.getElementById("carsTable");
+
+        // משתנים לספירה וחישוב
+
+        let vipCount = 0;
+        let totalValue = 0;
+
+        // מעבר על כל רכב במאגר
+
+        cars.forEach((car, index) => {
+
+            if (car.vip) {
+                vipCount++;
+            }
+
+            totalValue += car.value;
+
+            // קביעת סטטוס הרכב
+
+            const status = car.vip
+                ? '<span class="vip">⭐ VIP</span>'
+                : '<span>רגיל</span>';
+
+            // יצירת כרטיס עם תמונה ופרטים
+
+            cards.innerHTML += `
+                <div class="car">
+
+                    <img src="${car.image}"
+                         alt="${car.model}">
+
+                    <div class="car-info">
+
+                        <h3>${car.model}</h3>
+
+                        <p>🚘 סוג: ${car.type}</p>
+
+                        <p>סטטוס: ${status}</p>
+
+                        <div class="price">
+                            ${formatMoney(car.value)}
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            // הוספת הרכב לטבלה
+
+            table.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${car.model}</td>
+                    <td>${car.type}</td>
+                    <td class="value-cell">
+                        ${formatMoney(car.value)}
+                    </td>
+                    <td>${status}</td>
+                </tr>
+            `;
+
+        });
+
+        // עדכון הנתונים בראש האתר
+
+        document.getElementById("totalCars").textContent =
+            cars.length;
+
+        document.getElementById("vipCars").textContent =
+            vipCount;
+
+        document.getElementById("totalValue").textContent =
+            formatMoney(totalValue);
+
+    </script>
+
+</body>
+</html>
